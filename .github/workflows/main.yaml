@@ -11,6 +11,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -23,7 +24,8 @@ jobs:
         run: |
           pip install -r app/requirements.txt
           pip install -r tests/requirements.txt
-
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
       - name: Run tests
         run: pytest tests/
 
